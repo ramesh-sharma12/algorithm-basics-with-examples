@@ -1,3 +1,6 @@
+document.write('<br /><br /><b>*****************************SOTRING PROBLEMS*********************</b><br />');
+
+
 var BubbleSort = function (list) {
     var list = [
         12,
@@ -90,20 +93,23 @@ var insertionSort = function () {
 insertionSort();
 
 function mergeSort(arr) {
-    if (arr.length < 2) 
+    if (arr.length < 2)
         return arr;
-    
+
     var middle = parseInt(arr.length / 2);
     var left = arr.slice(0, middle);
-    var right = arr.slice(middle, arr.length);
+    var right = arr.slice(middle, arr.length);   
 
-   document.write('<br /><br />' + left.join(', ') + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + right.join(','));
+    document.write('<br />' + left.join(', ') + ' <b> &nbsp;|&nbsp; </b> ' + right.join(', '));
+   
+    var leftSort = mergeSort(left); 
+    var rightSort = mergeSort(right);      
 
-    return merge(mergeSort(left), mergeSort(right));
+    return merge(leftSort,rightSort);
 }
 
 function merge(left, right) {
-    var result = [];
+    var result = [];    
 
     while (left.length && right.length) {
         if (left[0] <= right[0]) {
@@ -114,19 +120,19 @@ function merge(left, right) {
 
         //document.write('&nbsp;&nbsp;&nbsp;' + result.join(', '));
     }
-   
+
 
     while (left.length) {
         result.push(left.shift());
         //document.write('' + left.join(', '));
     }
- 
+
     while (right.length) {
         result.push(right.shift());
         //document.write('&nbsp;' + right.join(', '));
-    }  
+    }
 
-    document.write('||' + result.join(', '));
+    document.write('<br /><b>' + result.join(' , ') + '</b>');
 
     return result;
 }
@@ -143,6 +149,6 @@ var arr = [
     9
 ];
 
-document.write('<br / ><b>merge sort........<br />' + arr.join(', ') + '</b>');
+document.write('<br / ><b>Merge Sort........<br /><br />' + arr.join(', ') + '</b>');
 
-document.write('<br / ><b>sorted........' + mergeSort(arr).join(' , ') + '</b>');
+document.write('<br / ><br / ><b>sorted........' + mergeSort(arr).join(' , ') + '</b>');
